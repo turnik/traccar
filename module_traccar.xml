@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_traccar" default="compile.module.traccar">
+  <dirname property="module.traccar.basedir" file="${ant.file.module_traccar}"/>
+  
+  <property name="module.jdk.home.traccar" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.traccar" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.traccar" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.traccar" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="traccar.output.dir" value="${module.traccar.basedir}/target/classes"/>
+  <property name="traccar.testoutput.dir" value="${module.traccar.basedir}/target/test-classes"/>
+  
+  <path id="traccar.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="traccar.module.production.classpath">
+    <path refid="${module.jdk.classpath.traccar}"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.9.7.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.193.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.40.classpath"/>
+    <path refid="library.maven:_org.postgresql:postgresql:9.4.1212.jre7.classpath"/>
+    <path refid="library.maven:_com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre7.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp-java7:2.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.21.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.10.6.final.classpath"/>
+    <path refid="library.maven:_com.ning:async-http-client:1.9.40.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.22.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-jndi:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet-core:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.25.1.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_org.liquibase:liquibase-core:3.5.3.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.17.classpath"/>
+    <path refid="library.maven:_javax.mail:mail:1.4.7.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls:2.3.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-jexl:2.1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls-poi:1.0.11.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml-schemas:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.maven:_stax:stax-api:1.0.1.classpath"/>
+    <path refid="library.maven:_com.github.virtuald:curvesapi:1.03.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity:1.7.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_commons-lang:commons-lang:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity-tools:2.0.classpath"/>
+    <path refid="library.maven:_commons-digester:commons-digester:1.8.classpath"/>
+    <path refid="library.maven:_commons-chain:commons-chain:1.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.3.classpath"/>
+    <path refid="library.maven:_commons-validator:commons-validator:1.3.1.classpath"/>
+    <path refid="library.maven:_dom4j:dom4j:1.1.classpath"/>
+    <path refid="library.maven:_oro:oro:2.0.8.classpath"/>
+    <path refid="library.maven:_sslext:sslext:1.2-0.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-core:1.3.8.classpath"/>
+    <path refid="library.maven:_antlr:antlr:2.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-taglib:1.3.8.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-tiles:1.3.8.classpath"/>
+    <path refid="library.maven:_org.mnode.ical4j:ical4j:2.0.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.groovy:groovy-all:2.3.2.classpath"/>
+    <path refid="library.maven:_biz.aqute.bnd:bndlib:2.3.0.classpath"/>
+    <path refid="library.maven:_org.osgi:org.osgi.core:4.3.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_com.fizzed:ch-smpp:5.0.9.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-util:6.0.2.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-charset:3.0.2.classpath"/>
+  </path>
+  
+  <path id="traccar.runtime.production.module.classpath">
+    <pathelement location="${traccar.output.dir}"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.9.7.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.193.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.40.classpath"/>
+    <path refid="library.maven:_org.postgresql:postgresql:9.4.1212.jre7.classpath"/>
+    <path refid="library.maven:_com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre7.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp-java7:2.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.21.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.10.6.final.classpath"/>
+    <path refid="library.maven:_com.ning:async-http-client:1.9.40.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.22.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-jndi:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet-core:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.25.1.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_org.liquibase:liquibase-core:3.5.3.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.17.classpath"/>
+    <path refid="library.maven:_javax.mail:mail:1.4.7.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls:2.3.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-jexl:2.1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls-poi:1.0.11.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml-schemas:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.maven:_stax:stax-api:1.0.1.classpath"/>
+    <path refid="library.maven:_com.github.virtuald:curvesapi:1.03.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity:1.7.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_commons-lang:commons-lang:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity-tools:2.0.classpath"/>
+    <path refid="library.maven:_commons-digester:commons-digester:1.8.classpath"/>
+    <path refid="library.maven:_commons-chain:commons-chain:1.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.3.classpath"/>
+    <path refid="library.maven:_commons-validator:commons-validator:1.3.1.classpath"/>
+    <path refid="library.maven:_dom4j:dom4j:1.1.classpath"/>
+    <path refid="library.maven:_oro:oro:2.0.8.classpath"/>
+    <path refid="library.maven:_sslext:sslext:1.2-0.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-core:1.3.8.classpath"/>
+    <path refid="library.maven:_antlr:antlr:2.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-taglib:1.3.8.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-tiles:1.3.8.classpath"/>
+    <path refid="library.maven:_org.mnode.ical4j:ical4j:2.0.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.groovy:groovy-all:2.3.2.classpath"/>
+    <path refid="library.maven:_biz.aqute.bnd:bndlib:2.3.0.classpath"/>
+    <path refid="library.maven:_org.osgi:org.osgi.core:4.3.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_com.fizzed:ch-smpp:5.0.9.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-util:6.0.2.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-charset:3.0.2.classpath"/>
+  </path>
+  
+  <path id="traccar.module.classpath">
+    <path refid="${module.jdk.classpath.traccar}"/>
+    <pathelement location="${traccar.output.dir}"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.9.7.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.193.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.40.classpath"/>
+    <path refid="library.maven:_org.postgresql:postgresql:9.4.1212.jre7.classpath"/>
+    <path refid="library.maven:_com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre7.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp-java7:2.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.21.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.10.6.final.classpath"/>
+    <path refid="library.maven:_com.ning:async-http-client:1.9.40.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.22.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-jndi:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet-core:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.25.1.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_org.liquibase:liquibase-core:3.5.3.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.17.classpath"/>
+    <path refid="library.maven:_javax.mail:mail:1.4.7.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls:2.3.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-jexl:2.1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls-poi:1.0.11.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml-schemas:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.maven:_stax:stax-api:1.0.1.classpath"/>
+    <path refid="library.maven:_com.github.virtuald:curvesapi:1.03.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity:1.7.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_commons-lang:commons-lang:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity-tools:2.0.classpath"/>
+    <path refid="library.maven:_commons-digester:commons-digester:1.8.classpath"/>
+    <path refid="library.maven:_commons-chain:commons-chain:1.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.3.classpath"/>
+    <path refid="library.maven:_commons-validator:commons-validator:1.3.1.classpath"/>
+    <path refid="library.maven:_dom4j:dom4j:1.1.classpath"/>
+    <path refid="library.maven:_oro:oro:2.0.8.classpath"/>
+    <path refid="library.maven:_sslext:sslext:1.2-0.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-core:1.3.8.classpath"/>
+    <path refid="library.maven:_antlr:antlr:2.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-taglib:1.3.8.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-tiles:1.3.8.classpath"/>
+    <path refid="library.maven:_org.mnode.ical4j:ical4j:2.0.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.groovy:groovy-all:2.3.2.classpath"/>
+    <path refid="library.maven:_biz.aqute.bnd:bndlib:2.3.0.classpath"/>
+    <path refid="library.maven:_org.osgi:org.osgi.core:4.3.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_com.fizzed:ch-smpp:5.0.9.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-util:6.0.2.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-charset:3.0.2.classpath"/>
+  </path>
+  
+  <path id="traccar.runtime.module.classpath">
+    <pathelement location="${traccar.testoutput.dir}"/>
+    <pathelement location="${traccar.output.dir}"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.9.7.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.193.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.40.classpath"/>
+    <path refid="library.maven:_org.postgresql:postgresql:9.4.1212.jre7.classpath"/>
+    <path refid="library.maven:_com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre7.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp-java7:2.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.21.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.10.6.final.classpath"/>
+    <path refid="library.maven:_com.ning:async-http-client:1.9.40.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.22.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.json:1.0.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-jndi:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.2.21.v20170120.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.containers:jersey-container-servlet-core:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:javax.inject:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-common:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.annotation:javax.annotation-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-api:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-utils:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:hk2-locator:2.5.0-b32.classpath"/>
+    <path refid="library.maven:_org.javassist:javassist:3.20.0-ga.classpath"/>
+    <path refid="library.maven:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-server:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.core:jersey-client:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-jaxb:2.25.1.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.media:jersey-media-json-jackson:2.25.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.jersey.ext:jersey-entity-filtering:2.25.1.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.8.4.classpath"/>
+    <path refid="library.maven:_org.liquibase:liquibase-core:3.5.3.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.17.classpath"/>
+    <path refid="library.maven:_javax.mail:mail:1.4.7.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls:2.3.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-jexl:2.1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_org.jxls:jxls-poi:1.0.11.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.poi:poi-ooxml-schemas:3.14.classpath"/>
+    <path refid="library.maven:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath"/>
+    <path refid="library.maven:_stax:stax-api:1.0.1.classpath"/>
+    <path refid="library.maven:_com.github.virtuald:curvesapi:1.03.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity:1.7.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_commons-lang:commons-lang:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.velocity:velocity-tools:2.0.classpath"/>
+    <path refid="library.maven:_commons-digester:commons-digester:1.8.classpath"/>
+    <path refid="library.maven:_commons-chain:commons-chain:1.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.3.classpath"/>
+    <path refid="library.maven:_commons-validator:commons-validator:1.3.1.classpath"/>
+    <path refid="library.maven:_dom4j:dom4j:1.1.classpath"/>
+    <path refid="library.maven:_oro:oro:2.0.8.classpath"/>
+    <path refid="library.maven:_sslext:sslext:1.2-0.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-core:1.3.8.classpath"/>
+    <path refid="library.maven:_antlr:antlr:2.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-taglib:1.3.8.classpath"/>
+    <path refid="library.maven:_org.apache.struts:struts-tiles:1.3.8.classpath"/>
+    <path refid="library.maven:_org.mnode.ical4j:ical4j:2.0.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.groovy:groovy-all:2.3.2.classpath"/>
+    <path refid="library.maven:_biz.aqute.bnd:bndlib:2.3.0.classpath"/>
+    <path refid="library.maven:_org.osgi:org.osgi.core:4.3.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_com.fizzed:ch-smpp:5.0.9.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-util:6.0.2.classpath"/>
+    <path refid="library.maven:_com.cloudhopper:ch-commons-charset:3.0.2.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.traccar">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.traccar">
+    <patternset refid="excluded.from.module.traccar"/>
+  </patternset>
+  
+  <path id="traccar.module.sourcepath">
+    <dirset dir="${module.traccar.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="traccar.module.test.sourcepath">
+    <dirset dir="${module.traccar.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.traccar" depends="compile.module.traccar.production,compile.module.traccar.tests" description="Compile module traccar"/>
+  
+  <target name="compile.module.traccar.production" depends="register.custom.compilers" description="Compile module traccar; production classes">
+    <mkdir dir="${traccar.output.dir}"/>
+    <javac2 destdir="${traccar.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.traccar}/javac">
+      <compilerarg line="${compiler.args.traccar}"/>
+      <bootclasspath refid="traccar.module.bootclasspath"/>
+      <classpath refid="traccar.module.production.classpath"/>
+      <src refid="traccar.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.traccar"/>
+    </javac2>
+    
+    <copy todir="${traccar.output.dir}">
+      <fileset dir="${module.traccar.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.traccar.tests" depends="register.custom.compilers,compile.module.traccar.production" description="compile module traccar; test classes" unless="skip.tests">
+    <mkdir dir="${traccar.testoutput.dir}"/>
+    <javac2 destdir="${traccar.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.traccar}/javac">
+      <compilerarg line="${compiler.args.traccar}"/>
+      <bootclasspath refid="traccar.module.bootclasspath"/>
+      <classpath refid="traccar.module.classpath"/>
+      <src refid="traccar.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.traccar"/>
+    </javac2>
+    
+    <copy todir="${traccar.testoutput.dir}">
+      <fileset dir="${module.traccar.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.traccar" description="cleanup module">
+    <delete dir="${traccar.output.dir}"/>
+    <delete dir="${traccar.testoutput.dir}"/>
+  </target>
+</project>

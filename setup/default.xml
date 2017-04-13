@@ -513,5 +513,6 @@
     <entry key='starlink.port'>5136</entry>
     <entry key='dmt.port'>5137</entry>
     <entry key='xt2400.port'>5138</entry>
+    <entry key='utp.port'>11112</entry>
 
 </properties>
